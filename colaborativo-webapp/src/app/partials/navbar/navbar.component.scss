@@ -1,0 +1,116 @@
+.wrapper {
+    width: 100vw;
+}
+
+.bg-light {
+    background: linear-gradient(135deg, #1a1a40, #2b2b5b) !important; // Fondo degradado oscuro
+    box-shadow: 0 0 15px #ff00ff, 0 0 30px #1e90ff; // Sombra de estilo neón
+}
+
+.navbar {
+    padding: 0 !important;
+}
+
+.navbar-brand {
+    padding-left: 20px;
+    font-size: 28px;
+    font-family: Nexa;
+    text-align: center;
+    color: #ff00ff;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    margin: 0 !important;
+}
+
+.nav-link {
+    font-size: 20px;
+    font-family: Nexa;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    margin: 0 !important;
+    transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+li a {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+/* Cambia el color de los enlaces al pasar el ratón */
+li a:hover {
+    color: #1e90ff;
+    text-shadow: 0 0 5px #1e90ff, 0 0 10px #ff00ff;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding: 1.2rem 1rem;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    font-size: 20px;
+    font-family: Nexa;
+    text-align: center;
+    color: #FFFFFF;
+    font-weight: bold;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #1e90ff;
+}
+
+.active {
+    background-color: transparent;
+    border-bottom: 2px solid #1e90ff; // Línea inferior neón para destacar el elemento activo
+}
+
+.bi-person-circle {
+    font-size: 20pt;
+    color: #1e90ff;
+    transition: color 0.3s ease;
+}
+
+.bi-person-circle:hover {
+    color: #ff00ff;
+    transform: scale(1.1);
+}
+
+.dropdown-toggle {
+    font-size: 15pt;
+    color: #1e90ff;
+    transition: color 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+    color: #ff00ff;
+}
+
+.dropdown-menu[data-bs-popper] {
+    right: 0 !important;
+    left: auto;
+    background-color: #2b2b5b;
+    border: none;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #1e90ff; // Sombra de estilo neón para el menú desplegable
+}
+
+.dropdown-item {
+    color: #FFFFFF;
+    transition: color 0.3s ease;
+}
+
+.dropdown-item:hover {
+    color: #ff00ff;
+}
+
+.navbar-toggler {
+    border: 2px solid #ffffff; // Cambia el color del borde aquí
+    border-radius: 8px; // Agrega bordes redondeados para un efecto más suave
+    padding: 6px; // Ajusta el espacio interior para un mejor aspecto
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    // Cambia el color del icono del menú hamburguesa a blanco utilizando SVG en línea
+    color: #FFFFFF;
+    width: 1.5rem;
+    height: 1.5rem;
+}

@@ -1,0 +1,259 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222245;
+    /* Fondo oscuro constante */
+    overflow-x: hidden;
+    /* Evita el desplazamiento horizontal en todo el documento */
+}
+
+.wrapper {
+    width: 100%;
+    min-height: 100vh;
+    /* Asegura que el fondo cubra toda la altura de la pantalla */
+    background-color: #222245;
+    /* Fondo constante */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    /* Evita el desplazamiento horizontal en el wrapper */
+}
+
+.container {
+    flex: 1;
+    /* Permite que el contenedor ocupe todo el espacio disponible */
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.9), #222245);
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    /* Asegura que el contenedor ocupa todo el ancho */
+    overflow-y: auto;
+    /* Permite desplazamiento vertical solo cuando es necesario */
+    overflow-x: hidden;
+    /* Evita desplazamiento horizontal */
+}
+
+/* Contenedor para los botones de cargar archivos */
+.input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #222245;
+    border: 1px solid #ff00ff;
+    /* Borde inicial en rosa neón */
+    color: white;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse 1.5s infinite;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #1e90ff;
+    }
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #ff00ff, #1e90ff);
+    color: white;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #1e90ff;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px #ff00ff, 0 0 25px #1e90ff;
+}
+
+button:not(:disabled) {
+    background-color: #4caf50;
+    color: white;
+}
+
+button:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+}
+
+p {
+    margin-top: 10px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Estilos para las carpetas */
+.folder-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+    width: 100%;
+    /* Asegura que no se desborde horizontalmente */
+}
+
+.folder {
+    display: inline-block;
+    padding: 20px;
+    background-color: #2a2a40;
+    border: 1px solid #4d4d66;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+    color: white;
+    margin-top: 30px;
+    box-sizing: border-box;
+    /* Evita desbordamientos */
+}
+
+.folder:hover {
+    background-color: #1e90ff;
+    transform: scale(1.03);
+    /* Reducción de escala para evitar scroll */
+}
+
+.folder mat-icon {
+    font-size: 60px;
+    color: #ff00ff;
+}
+
+.folder span {
+    display: block;
+    margin-top: 10px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Asegúrate de que los elementos dentro de .container también se ajusten al ancho */
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #4d4d66;
+    border-radius: 8px;
+    background-color: #222245;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    /* Asegura que ocupe el ancho completo */
+    overflow-x: hidden;
+    /* Evita desplazamiento horizontal dentro de file-item */
+    box-sizing: border-box;
+}
+
+.file-name {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 65%;
+    /* Ajuste de ancho máximo */
+}
+
+.file-actions {
+    display: flex;
+    align-items: center;
+
+    button {
+        margin-left: 10px;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 50%;
+        padding: 8px;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: #388e3c;
+            transform: scale(1.1);
+        }
+
+        mat-icon {
+            font-size: 16px;
+        }
+    }
+
+    .delete {
+        background-color: #f44336;
+
+        &:hover {
+            background-color: #d32f2f;
+            transform: scale(1.1);
+        }
+    }
+}
+
+.image-preview {
+    max-width: 150px;
+    max-height: 150px;
+    margin-right: 10px;
+    border-radius: 4px;
+    transition: transform 0.3s;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+}
+
+/* Efectos de neón */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px #ff00ff, 0 0 20px #1e90ff;
+    }
+
+    100% {
+        box-shadow: 0 0 20px #ff00ff, 0 0 30px #1e90ff;
+    }
+}
+
+/* Estilo responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+        overflow-x: hidden;
+        /* Asegura que no haya desplazamiento horizontal */
+    }
+
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        /* Asegura el ancho completo */
+    }
+
+    .file-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

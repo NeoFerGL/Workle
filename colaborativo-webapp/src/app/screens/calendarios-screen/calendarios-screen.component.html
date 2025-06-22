@@ -1,0 +1,29 @@
+<div>
+    <!-- Inyectamos el componente navbar -->
+    <section>
+        <app-navbar></app-navbar>
+    </section>
+</div>
+
+<!-- Contenedor principal para el título y el calendario -->
+<div class="main-container">
+
+    <!-- Título del Calendario -->
+    <div class="calendar-title">
+        Calendario de Eventos
+    </div>
+
+    <!-- Contenedores para eventos y el calendario -->
+    <div class="flex-container">
+        <div id="external-events">
+            <p>Eventos arrastrables:</p>
+            <div class='fc-event'>Evento 1</div>
+            <div class='fc-event'>Evento 2</div>
+        </div>
+
+        <!-- Contenedor para el calendario -->
+        <div class="calendar-container">
+            <full-calendar #fullcalendar [options]="calendarOptions"></full-calendar>
+        </div>
+    </div>
+</div>

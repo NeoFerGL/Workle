@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <div class="section-home">
+        <div class="body-home">
+            <section class="" *ngIf="rol == 'user'">
+                <app-navbar></app-navbar>
+            </section>
+
+            <div class="container">
+                <!-- Sección de Videollamadas -->
+                <div class="section-card" (click)="clickNavLink('/videollamadas')">
+                    <img src="assets/images/videollamadas.webp" alt="Videollamadas" />
+                    <p>Videollamadas</p>
+                </div>
+
+                <!-- Sección de Calendarios de Tareas -->
+                <div class="section-card" (click)="clickNavLink('/calendarios')">
+                    <img src="assets/images/calendarios.webp" alt="Calendarios de Tareas" />
+                    <p>Calendarios de Tareas</p>
+                </div>
+
+                <!-- Sección de Compartición de Archivos -->
+                <div class="section-card" (click)="clickNavLink('/archivos')">
+                    <img src="assets/images/archivos.webp" alt="Compartición de Archivos" />
+                    <p>Compartición de Archivos</p>
+                </div>
+
+                <!-- Sección de Pizarra Colaborativa 
+                <div class="section-card" (click)="clickNavLink('/pizarra')">
+                    <img src="assets/images/pizarra.webp" alt="Pizarra Colaborativa" />
+                    <p>Pizarra Colaborativa</p>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+</div>

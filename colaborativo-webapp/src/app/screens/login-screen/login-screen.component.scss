@@ -1,0 +1,500 @@
+/* Landscape (ancho >= 768px y orientación landscape) */
+@media (min-width: 768px) and (orientation: landscape) {
+    .wrapper {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        overflow-y: hidden;
+    }
+
+    .section-left {
+        width: 50%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        background-color: black;
+    }
+
+    .welcome-text {
+        font-size: 2rem;
+        color: #ff00ff;
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+        animation: neonGlow 1.5s ease-in-out infinite alternate;
+        position: relative;
+        z-index: 2;
+    }
+
+    .app-description {
+        color: #ffffff;
+        font-size: 1.2rem;
+        text-align: center;
+        margin-top: 50px;
+        // opacity: 0.5;
+        animation: fadeIn 2.5s ease;
+        z-index: 2;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            // opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        100% {
+            // opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Fondo de estilo Star Wars con efecto hyperspace */
+    .star-wars-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 2px, transparent 2px) 0 0,
+            radial-gradient(circle, rgba(255, 255, 255, 0.15) 2px, transparent 2px) 50px 50px,
+            radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px) 0 0,
+            radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px) 50px 50px;
+        background-color: #000;
+        background-size: 100px 100px;
+        animation: starMove 2s linear infinite;
+        opacity: 0.9;
+    }
+
+    @keyframes starMove {
+        from {
+            transform: translateZ(0) scale(1);
+        }
+
+        to {
+            transform: translateZ(-500px) scale(2);
+        }
+    }
+
+    /* Estilos y animaciones para los cometas */
+    .meteor {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: linear-gradient(45deg, #ff6600, transparent);
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: meteorMove 5s linear infinite;
+        z-index: 1;
+    }
+
+    .meteor1 {
+        top: 10%;
+        left: 80%;
+        animation-delay: 0s;
+        animation-duration: 4s;
+    }
+
+    .meteor2 {
+        top: 50%;
+        left: 90%;
+        animation-delay: 2s;
+        animation-duration: 3.5s;
+    }
+
+    .meteor3 {
+        top: 70%;
+        left: 60%;
+        animation-delay: 1s;
+        animation-duration: 4.5s;
+    }
+
+    @keyframes meteorMove {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+        }
+
+        70% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translate(-150px, 150px) scale(0.5);
+            opacity: 0;
+        }
+    }
+
+    .section-right {
+        width: 50%;
+        height: 100%;
+        background-image: url(../../../assets/images/fondoLogin.webp);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        // animation: bgAnimate 5s linear infinite alternate;
+    }
+
+    @keyframes bgAnimate {
+        0% {
+            background-position: 0 0;
+        }
+
+        100% {
+            background-position: 100% 100%;
+        }
+    }
+
+    .card {
+        width: 25rem;
+        height: 27.813rem;
+        background: #2a2a40;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        border: 2px solid #4d4d66;
+        border-radius: 10px;
+        opacity: 1;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 3rem;
+    }
+
+    .title {
+        font-size: 32px;
+        text-align: center;
+        font-family: Nexa-Bold;
+        letter-spacing: 0px;
+        color: #df42f5;
+        text-transform: uppercase;
+        opacity: 1;
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        }
+
+        to {
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+        }
+    }
+
+    input {
+        width: 296px;
+        height: 48px;
+        background-color: #222245; // Fondo constante
+        border: 1px solid #ff00ff; // Borde inicial en rosa neón
+        color: white; // Asegura que el texto se mantenga en blanco
+        padding: 10px;
+        font-size: 18px;
+        text-align: center;
+        border-radius: 5px;
+        transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        outline: none;
+        animation: pulse 1.5s infinite;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        &:focus {
+            border-color: #1e90ff; // Cambia el borde a azul al hacer foco
+            box-shadow: 0 0 10px #1e90ff; // Sombra azul luminosa
+            background-color: #222245; // Fondo constante
+            color: white; // Asegura que el texto se mantenga en blanco
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #1e90ff;
+        }
+
+        100% {
+            box-shadow: 0 0 20px #ff00ff, 0 0 30px #1e90ff;
+        }
+    }
+
+    .input-group-text {
+        background: #222245;
+        border: 1px solid #ff00ff; // Añadir borde para el resplandor
+        color: #1e90ff;
+        border-left: none !important;
+        font-size: 1rem !important;
+        cursor: pointer;
+        transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        animation: pulse 1.5s infinite;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; // Efecto de resplandor
+        }
+    }
+
+
+    .btn-primary {
+        width: 208px;
+        height: 40px;
+        background: linear-gradient(135deg, #ff00ff, #1e90ff);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #1e90ff;
+        cursor: pointer;
+        font-family: Nexa-Bold;
+        font-size: 16px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        margin: 10px;
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px #ff00ff, 0 0 25px #1e90ff;
+    }
+
+    .form-check-label {
+        color: #1e90ff;
+        cursor: pointer;
+        transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    }
+
+    .form-check-label:hover {
+        color: #ff00ff;
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+    }
+}
+
+/* Portrait (todas las resoluciones con orientación portrait) */
+@media (orientation: portrait) {
+    .wrapper {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        overflow-y: hidden;
+        position: relative;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 2px, transparent 2px) 0 0,
+                    radial-gradient(circle, rgba(255, 255, 255, 0.15) 2px, transparent 2px) 50px 50px,
+                    radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px) 0 0,
+                    radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px) 50px 50px;
+        background-color: #000;
+        background-size: 100px 100px;
+        animation: starMove 2s linear infinite;
+    }
+
+    .star-wars-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    @keyframes starMove {
+        from {
+            background-position: 0 0;
+        }
+        to {
+            background-position: -100px -100px;
+        }
+    }
+
+    /* Meteoritos animados */
+    .meteor {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: linear-gradient(45deg, #ff6600, transparent);
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: meteorMove 5s linear infinite;
+        z-index: 1;
+    }
+
+    .meteor1 {
+        top: 10%;
+        left: 80%;
+        animation-delay: 0s;
+        animation-duration: 4s;
+    }
+
+    .meteor2 {
+        top: 50%;
+        left: 90%;
+        animation-delay: 2s;
+        animation-duration: 3.5s;
+    }
+
+    .meteor3 {
+        top: 70%;
+        left: 60%;
+        animation-delay: 1s;
+        animation-duration: 4.5s;
+    }
+
+    @keyframes meteorMove {
+        0% {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+        }
+        70% {
+            opacity: 1;
+        }
+        100% {
+            transform: translate(-150px, 150px) scale(0.5);
+            opacity: 0;
+        }
+    }
+
+    .section-left {
+        display: none;
+    }
+
+    .section-right {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        position: relative;
+        z-index: 2;
+    }
+
+    .card {
+        width: 85%;
+        max-width: 22rem;
+        background: rgba(42, 42, 64, 0.95);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+        border: 2px solid #4d4d66;
+        border-radius: 10px;
+        opacity: 1;
+    }
+
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+
+    input {
+        width: 100%;
+        height: 48px;
+        background-color: #222245;
+        border: 1px solid #ff00ff;
+        color: white;
+        padding: 10px;
+        font-size: 18px;
+        text-align: center;
+        border-radius: 5px;
+        transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        outline: none;
+        animation: pulse 1.5s infinite;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        &:focus {
+            border-color: #1e90ff;
+            box-shadow: 0 0 10px #1e90ff;
+            background-color: #222245;
+            color: white;
+        }
+    }
+
+    .input-group-text {
+        background: #222245;
+        border: 1px solid #ff00ff;
+        color: #1e90ff;
+        cursor: pointer;
+        transition: border-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        animation: pulse 1.5s infinite;
+
+        &:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        }
+    }
+
+    .btn-primary {
+        width: 85%;
+        height: 40px;
+        background: linear-gradient(135deg, #ff00ff, #1e90ff);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #1e90ff;
+        cursor: pointer;
+        font-family: Nexa-Bold;
+        font-size: 16px;
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        margin: 10px;
+    }
+
+    .btn-primary:hover {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px #ff00ff, 0 0 25px #1e90ff;
+    }
+
+    .form-check-label {
+        color: #1e90ff;
+        cursor: pointer;
+        transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+    }
+
+    .form-check-label:hover {
+        color: #ff00ff;
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff;
+    }
+
+    .title {
+        font-size: 1.8rem;
+        text-align: center;
+        font-family: Nexa-Bold;
+        letter-spacing: 0px;
+        color: #df42f5;
+        text-transform: uppercase;
+        opacity: 1;
+        text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+        from {
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+        }
+        to {
+            text-shadow: 0 0 20px #ff00ff, 0 0 40px #ff00ff;
+        }
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #1e90ff;
+        }
+        100% {
+            box-shadow: 0 0 20px #ff00ff, 0 0 30px #1e90ff;
+        }
+    }
+}

@@ -1,0 +1,77 @@
+<div class="wrapper">
+    <!-- Inyectamos el componente navbar -->
+    <section>
+        <app-navbar></app-navbar>
+    </section>
+
+    <div class="container">
+        <h2>Gestor de Archivos e Imágenes</h2>
+
+        <!-- Contenedor de botones para subir archivo -->
+        <div class="input-container">
+            <label class="custom-file-upload">
+                <input type="file" (change)="onFileSelected($event)" />
+                Elegir archivo
+            </label>
+            <button [disabled]="!selectedFile" (click)="onUpload()">Cargar Archivo</button>
+        </div>
+
+        <!-- Mensaje de estado de la carga -->
+        <p>{{ message }}</p>
+
+        <!-- Botón para volver a la lista de carpetas -->
+        <button *ngIf="showBackButton" mat-icon-button class="back-button" (click)="goBack()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+
+        <!-- Lista de carpetas -->
+        <div *ngIf="!showBackButton" class="folder-container">
+            <div class="folder" (click)="viewFiles()">
+                <mat-icon>folder</mat-icon>
+                <span>Archivos</span>
+            </div>
+            <div class="folder" (click)="viewImages()">
+                <mat-icon>folder</mat-icon>
+                <span>Imágenes</span>
+            </div>
+        </div>
+
+        <!-- Lista de archivos -->
+        <div *ngIf="showFiles">
+            <h3>Archivos</h3>
+            <div *ngFor="let file of files" class="file-item">
+                <div class="file-name">
+                    <mat-icon>insert_drive_file</mat-icon>
+                    <span>{{ file.file_url.split('/').pop() }}</span>
+                </div>
+                <div class="file-actions">
+                    <button mat-icon-button (click)="downloadFile(file.file_url)">
+                        <mat-icon>cloud_download</mat-icon>
+                    </button>
+                    <button mat-icon-button class="delete" (click)="deleteFile(file.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lista de imágenes -->
+        <div *ngIf="showImages">
+            <h3>Imágenes</h3>
+            <div *ngFor="let image of images" class="file-item">
+                <img [src]="image.file_url" alt="Imagen" class="image-preview" />
+                <div class="file-name">
+                    <span>{{ image.file_url.split('/').pop() }}</span>
+                </div>
+                <div class="file-actions">
+                    <button mat-icon-button (click)="downloadFile(image.file_url)">
+                        <mat-icon>cloud_download</mat-icon>
+                    </button>
+                    <button mat-icon-button class="delete" (click)="deleteFile(image.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

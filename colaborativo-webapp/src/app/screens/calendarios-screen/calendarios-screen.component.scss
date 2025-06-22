@@ -1,0 +1,82 @@
+
+/* Contenedor principal para centrar el título y estructurar el layout */
+.main-container {
+    text-align: center;
+}
+
+/* Flexbox para alinear eventos y calendario */
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 10px; // Padding para manejar el espacio interno
+}
+
+#external-events {
+    flex: 0 0 calc(30% - 20px); // Ajuste para incluir padding y margen
+    padding: 10px;
+    background: #f8f9fa;
+    border: 1px solid #ddd;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
+    margin-right: 10px; // Margen entre eventos y calendario
+    box-sizing: border-box; // Incluye el padding y borde en el ancho total
+
+    .fc-event {
+        padding: 8px;
+        background: #3788d8;
+        color: white;
+        margin-bottom: 5px;
+        cursor: move;
+        border-radius: 4px;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.calendar-container {
+    flex: 0 0 calc(70% - 20px); // Asegura que el ancho se mantenga
+    padding: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-left: 10px; // Margen para mantener la consistencia
+    height: auto; // Se ajusta la altura automáticamente según el contenido
+    max-height: 85vh; // Altura máxima para evitar desbordamiento vertical
+    overflow-y: auto; // Permite scroll interno si es necesario
+}
+
+#fullcalendar {
+    height: 100%; // Asegura que el calendario llene el contenedor
+}
+
+.calendar-title {
+    font-size: 24px;
+    color: #4A148C;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+/* Media queries para ajustar responsividad */
+@media (max-width: 768px) {
+    .flex-container {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    #external-events {
+        width: 100%;
+        margin: 0 0 20px 0; // Ajustar el margen para evitar corte
+    }
+
+    .calendar-container {
+        width: 100%;
+        padding: 10px;
+        margin: 0;
+        max-height: 100vh; // Ajusta la altura en dispositivos móviles para evitar scroll
+    }
+}
+
+@media (min-width: 768px) {
+    .flex-container {
+        padding: 0 10px; // Ajuste del padding del contenedor principal
+    }
+}

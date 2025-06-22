@@ -1,0 +1,135 @@
+-- Crear la base de datos si no existe y seleccionarla
+CREATE DATABASE IF NOT EXISTS inventario_compras;
+USE inventario_compras;
+
+-- Crear tabla usuarios para manejar roles de Cliente y Administrador
+CREATE TABLE IF NOT EXISTS usuarios (
+    usuario_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_completo VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20),
+    password VARCHAR(512) NOT NULL,
+    rol ENUM('Cliente', 'Dependiente') NOT NULL
+);
+
+-- Crear tabla notificaciones relacionada con usuarios
+CREATE TABLE IF NOT EXISTS notificaciones (
+    notificacion_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    titulo VARCHAR(100) NOT NULL,
+    descripcion TEXT NOT NULL,
+    visto ENUM('si', 'no') DEFAULT 'no',
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear tabla materiales
+CREATE TABLE IF NOT EXISTS materiales (
+    material_id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion TEXT,
+    precio_por_metro DECIMAL(10, 2) NOT NULL
+);
+
+-- Crear tabla inventario
+CREATE TABLE IF NOT EXISTS inventario (
+    inventario_id INT AUTO_INCREMENT PRIMARY KEY,
+    material_id INT NOT NULL,
+    cantidad_disponible_metros INT NOT NULL,
+    ancho_defecto INT NOT NULL DEFAULT 1,
+    alto_defecto INT NOT NULL DEFAULT 1,
+    ultima_actualizacion DATE NOT NULL,
+    FOREIGN KEY (material_id) REFERENCES materiales(material_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear tabla pedidos
+CREATE TABLE IF NOT EXISTS pedidos (
+    pedido_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    fecha_pedido DATE NOT NULL,
+    estado ENUM('En espera', 'En preparación', 'Listo', 'Confirmado') NOT NULL,
+    numero_pedido VARCHAR(20) UNIQUE NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear tabla diseños
+CREATE TABLE IF NOT EXISTS disenos (
+    diseno_id INT AUTO_INCREMENT PRIMARY KEY,
+    pedido_id INT NOT NULL,
+    imagen VARCHAR(255) NOT NULL,
+    dimensiones_largo DECIMAL(10, 2) NOT NULL,
+    dimensiones_alto DECIMAL(10, 2) NOT NULL,
+    material_id INT NOT NULL,
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(pedido_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (material_id) REFERENCES materiales(material_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear tabla ordenes_compra
+CREATE TABLE IF NOT EXISTS ordenes_compra (
+    orden_id INT AUTO_INCREMENT PRIMARY KEY,
+    material_id INT NOT NULL,
+    cantidad FLOAT NOT NULL,
+    fecha_orden DATE NOT NULL,
+    proveedor VARCHAR(100),
+    estado ENUM('Pendiente', 'Enviado', 'Recibido') NOT NULL,
+    FOREIGN KEY (material_id) REFERENCES materiales(material_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Crear tabla cotizaciones
+CREATE TABLE IF NOT EXISTS cotizaciones (
+    cotizacion_id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    pedido_id INT NOT NULL,
+    fecha_cotizacion DATE NOT NULL,
+    total DECIMAL(10, 2) NOT NULL,
+    estado ENUM('Enviada', 'Aceptada', 'Rechazada') NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(usuario_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (pedido_id) REFERENCES pedidos(pedido_id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Insertar datos en la tabla usuarios para manejar los clientes
+INSERT INTO usuarios (nombre_completo, correo, telefono, password, rol) VALUES
+('Rocks D Xebec', 'rocks.xebec@example.com', '555-0123', '123Pruebas1', 'Cliente'),
+('Monkey D. Luffy', 'luffy.monkey@example.com', '555-0456', '123Pruebas2', 'Cliente'),
+('Roronoa Zoro', 'zoro.roronoa@example.com', '555-0789', '123Pruebas3', 'Cliente');
+
+-- Insertar datos en la tabla notificaciones
+INSERT INTO notificaciones (usuario_id, titulo, descripcion, visto) VALUES
+(1, 'Pedido en espera', 'Tu pedido 1001 se encuentra en espera.', 'no'),
+(2, 'Pedido confirmado', 'Tu pedido 1002 ha sido confirmado.', 'si'),
+(3, 'Preparación de pedido', 'Tu pedido 1003 está en preparación.', 'no');
+
+-- Insertar datos en la tabla materiales
+INSERT INTO materiales (nombre, descripcion, precio_por_metro) VALUES
+('Lona Premium', 'Lona resistente para exteriores', 10.50),
+('Lona Reforzada', 'Lona ultra resistente para uso intensivo', 15.00),
+('Lona Eco', 'Lona económica para usos diversos', 8.00);
+
+-- Insertar datos en la tabla inventario
+INSERT INTO inventario (material_id, cantidad_disponible_metros, ancho_defecto, alto_defecto, ultima_actualizacion) VALUES
+(1, 150, 1, 1, CURDATE()),
+(2, 100, 1, 1, CURDATE()),
+(3, 200, 1, 1, CURDATE());
+
+-- Insertar datos en la tabla pedidos
+INSERT INTO pedidos (usuario_id, fecha_pedido, estado, numero_pedido) VALUES
+(1, CURDATE(), 'En espera', '1001'),
+(2, CURDATE(), 'Confirmado', '1002'),
+(3, CURDATE(), 'En preparación', '1003');
+
+-- Insertar rutas de imagen en la tabla diseños
+INSERT INTO disenos (pedido_id, imagen, dimensiones_largo, dimensiones_alto, material_id) VALUES
+(1, 'img/rocks.jpg', 2.00, 1.50, 1),
+(2, 'img/thor.jpg', 1.00, 1.00, 2),
+(3, 'img/venom.jpg', 2.50, 2.00, 3);
+
+-- Insertar datos en la tabla ordenes_compra
+INSERT INTO ordenes_compra (material_id, cantidad, fecha_orden, proveedor, estado) VALUES
+(1, 50, CURDATE(), 'Proveedor A', 'Pendiente'),
+(2, 75, CURDATE(), 'Proveedor B', 'Enviado'),
+(3, 100, CURDATE(), 'Proveedor C', 'Recibido');
+
+-- Insertar datos en la tabla cotizaciones
+INSERT INTO cotizaciones (usuario_id, pedido_id, fecha_cotizacion, total, estado) VALUES
+(1, 1, CURDATE(), 300.00, 'Enviada'),
+(2, 2, CURDATE(), 450.00, 'Aceptada'),
+(3, 3, CURDATE(), 225.00, 'Rechazada');

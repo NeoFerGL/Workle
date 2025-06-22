@@ -1,0 +1,42 @@
+<section class="login">
+    <div class="wrapper">
+        <div class="section-left">
+            <h2 class="welcome-text">Bienvenido de nuevo</h2>
+            <p class="app-description">La aplicación colaborativa que conecta a equipos en un mismo espacio digital.</p>
+            <div class="star-wars-background"></div>
+            <div class="meteor meteor1"></div>
+            <div class="meteor meteor2"></div>
+            <div class="meteor meteor3"></div>
+        </div>
+        <div class="section-right">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="title">Inicio de Sesión</h3>
+                    <div class="container-inputs">
+                        <div class="pt-3 mb-3">
+                            <input type="email" [(ngModel)]="username" class="form-control" id="email"
+                                placeholder="Correo electrónico">
+                            <div *ngIf="errors.username" class="invalid-feedback">{{ errors.username }}</div>
+                        </div>
+                        <div class="pt-3 mb-3">
+                            <div class="input-group input-group-merge">
+                                <input type="{{type}}" [(ngModel)]="password" id="show-password" name="password_user"
+                                    class="form-control pwd" placeholder="Contraseña" (keyup.enter)="login()">
+                                <div class="input-group-text" id="show-password" data-password="false">
+                                    <i *ngIf="type == 'password'" class="bi bi-eye-fill" (click)="showPassword()"></i>
+                                    <i *ngIf="type == 'text'" class="bi bi-eye-slash-fill" (click)="showPassword()"></i>
+                                </div>
+                            </div>
+                            <div *ngIf="errors.password" class="invalid-feedback">{{ errors.password }}</div>
+                        </div>
+                        <div class="d-flex flex-column align-items-center mb-3 w-100" style="text-align: center;">
+                            <button class="btn btn-primary" type="submit" (click)="login()">Iniciar sesión</button>
+                            <label class="form-check-label pt-3" for="checkbox-signin"
+                                (click)="registrar()">Registrarse</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

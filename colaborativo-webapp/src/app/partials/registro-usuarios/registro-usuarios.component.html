@@ -1,0 +1,61 @@
+<div class="wrapper">
+    <!-- Va a englobar todo el formulario con la cabecera -->
+    <div class="section-registro">
+        <div class="body-registro">
+            <div class="row mt-3 mb-3">
+                <div class="form-group col-12">
+                    <label class="title-user" for="tipo_usuario">Ingresa los siguientes datos</label>
+                </div>
+            </div>
+            <!-- Campos del formulario -->
+            <div class="input-container">
+                <label>Nombre</label>
+                <input type="text" [(ngModel)]="usuario.first_name" placeholder="Escribe nombre" class="neon-input">
+                <div *ngIf="errors.first_name" class="invalid-feedback">{{ errors.first_name }}</div>
+            </div>
+
+            <div class="input-container">
+                <label>Apellidos</label>
+                <input type="text" [(ngModel)]="usuario.last_name" placeholder="Escribe apellidos" class="neon-input">
+                <div *ngIf="errors.last_name" class="invalid-feedback">{{ errors.last_name }}</div>
+            </div>
+
+            <div class="input-container">
+                <label>Correo electrónico</label>
+                <input type="email" [(ngModel)]="usuario.email" placeholder="Escribe correo electrónico"
+                    [disabled]="editar" class="neon-input">
+                <div *ngIf="errors.email" class="invalid-feedback">{{ errors.email }}</div>
+            </div>
+
+            <div class="input-container" *ngIf="!editar">
+                <label>Contraseña</label>
+                <div class="input-wrapper">
+                    <input [type]="inputType_1" [(ngModel)]="usuario.password" placeholder="Escribe contraseña"
+                        class="neon-input">
+                    <mat-icon class="eye-icon" (click)="showPassword()">{{ hide_1 ? 'visibility_off' : 'visibility'
+                        }}</mat-icon>
+                </div>
+                <div *ngIf="errors.password" class="invalid-feedback">{{ errors.password }}</div>
+            </div>
+
+            <div class="input-container" *ngIf="!editar">
+                <label>Confirmar contraseña</label>
+                <div class="input-wrapper">
+                    <input [type]="inputType_2" [(ngModel)]="usuario.confirmar_password"
+                        placeholder="Confirma la contraseña" class="neon-input">
+                        <!-- <span class="eye-icon" (click)="showPwdConfirmar()">{{ hide_2 ? '🙈' : '👁️' }}</span> -->
+                    <mat-icon class="eye-icon" (click)="showPwdConfirmar()">{{ hide_2 ? 'visibility_off' : 'visibility'
+                        }}</mat-icon>
+                </div>
+                <div *ngIf="errors.confirmar_password" class="invalid-feedback">{{ errors.confirmar_password }}</div>
+            </div>
+
+            <!-- Botón de Registro -->
+            <div class="section-buttons">
+                <button class="btn btn-danger" (click)="regresar()">Cancelar</button>
+                <button *ngIf="!editar" class="btn btn-primary" type="submit" (click)="registrar()">Registrar</button>
+                <button *ngIf="editar" class="btn btn-primary" type="submit" (click)="actualizar()">Actualizar</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,159 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #222245;
+    /* Fondo oscuro constante */
+    overflow-x: hidden;
+    /* Evita el desplazamiento horizontal */
+}
+
+.wrapper {
+    width: 100%;
+    /* Cambiado de 100vw a 100% */
+    min-height: 100vh;
+    background-color: #222245;
+    /* Fondo constante */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    /* Evita el desplazamiento horizontal */
+}
+
+.header-home {
+    width: 100%;
+    background-color: #222245;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    padding: 0;
+}
+
+.section-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    margin-top: 0;
+}
+
+.body-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    min-height: calc(100vh - 100px);
+    /* Ajusta la altura según el contenido */
+    background-color: #222245;
+    box-sizing: border-box;
+    overflow-y: auto;
+    /* Añadido para evitar scroll innecesario */
+    overflow-x: hidden;
+    /* Evita el desplazamiento horizontal */
+}
+
+/* Estilos para el contenedor de las secciones */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 36px;
+    /* Espacio entre tarjetas */
+    row-gap: 75px;
+    margin-top: 75px;
+    width: 100%;
+    padding: 0 10px;
+    /* Agrega un pequeño padding para evitar el scroll */
+    // overflow-x: hidden;
+    /* Evita el desplazamiento horizontal */
+    box-sizing: border-box;
+}
+
+.section-card {
+    cursor: pointer;
+    width: calc(50% - 20px);
+    height: auto;
+    background-color: #303056;
+    /* Fondo oscuro para la tarjeta */
+    border: 1px solid #444466;
+    /* Borde más oscuro para mejor definición */
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 20px;
+    color: #E0E0E0;
+    /* Texto claro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out, background-color 0.2s ease-in-out;
+    box-sizing: border-box;
+    /* Incluye padding y borde en el ancho total */
+}
+
+.section-card:hover {
+    transform: translateY(-5px);
+    background-color: #38386A;
+    /* Fondo ligeramente más oscuro en hover */
+    box-shadow: 0 0 15px #ff00ff, 0 0 25px #1e90ff;
+    /* Efecto neón en hover */
+    border: 1px solid #ff00ff;
+    /* Borde neón */
+}
+
+/* Imagenes dentro de la tarjeta */
+.section-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+/* Texto dentro de la tarjeta */
+.section-card p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    /* Texto blanco */
+}
+
+.section-card a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.section-card a:hover {
+    color: #1976d2;
+}
+
+/* Estilos responsivos para pantallas más pequeñas */
+@media screen and (max-width: 767px) {
+    .container {
+        padding: 10px;
+        margin-top: 75px;
+        width: 100%;
+        overflow-x: hidden;
+        /* Asegura que no haya desplazamiento horizontal */
+    }
+
+    .section-card {
+        width: 100%;
+        /* Hace que las tarjetas ocupen todo el ancho en pantallas pequeñas */
+        height: auto;
+    }
+}

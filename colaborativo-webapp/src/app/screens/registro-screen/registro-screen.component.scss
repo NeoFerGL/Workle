@@ -1,0 +1,64 @@
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.section-registro {
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header-registro {
+    width: 100vw;
+    height: auto; // Ajusta la altura según el contenido
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0;
+    padding: 0; // Elimina márgenes y padding innecesarios
+}
+
+.body-registro {
+    width: 100%;
+    height: auto; // Deja que el contenido determine la altura
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 0; // Elimina el margen superior
+    padding: 0; // Elimina padding si lo hubiera
+    background-color: #222245; // Fondo constante
+}
+
+.slider {
+    width: 100%;
+    display: flex;
+    justify-content: center; // Centra el slider horizontalmente
+    margin-top: 0; // Elimina el margen superior
+
+    @media (max-width: 576px) {
+        margin-top: auto; // Aumenta el margen superior en pantallas pequeñas para mover el slider más abajo si es necesario
+    }
+}
+
+.img-slider {
+    width: 100%;
+    height: auto; // Mantiene la proporción de la imagen
+    object-fit: cover; // Asegura que la imagen llene el contenedor sin perder proporción
+}
+
+@media (max-width: 576px) {
+    .collapse.show+.body-registro .slider {
+        margin-top: 50px; // Ajusta este valor para dar espacio al dropdown
+        transition: margin-top 0.3s ease; // Añade una transición suave al desplazamiento
+    }
+}

@@ -1,0 +1,70 @@
+<div>
+    <!-- Inyectamos el componente navbar -->
+    <section>
+        <app-navbar></app-navbar>
+    </section>
+</div>
+
+<div class="video-call-layout">
+    <!-- Barra de participantes -->
+    <div class="participants-bar">
+        <div *ngFor="let participant of participants" class="participant-thumbnail">
+            <video *ngIf="participant.stream" [srcObject]="participant.stream" autoplay muted></video>
+            <mat-card>{{ participant.name }}</mat-card>
+        </div>
+    </div>
+
+    <!-- Contenedor principal con el video y el chat -->
+    <div class="main-container">
+        <!-- Recuadro del video principal -->
+        <div class="main-video">
+            <video *ngIf="activeParticipant?.stream" [srcObject]="activeParticipant!.stream" autoplay></video>
+            <mat-card *ngIf="!activeParticipant?.stream">No hay video activo</mat-card>
+        </div>
+
+        <!-- Panel del chat -->
+        <div class="chat-panel">
+            <h3>Chat</h3>
+            <div class="chat-messages">
+                <div *ngFor="let mensaje of messages" class="message">
+                    <strong>{{ mensaje.sender }}:</strong> {{ mensaje.text }}
+                </div>
+            </div>
+
+            <!-- Ajustamos la posición del área de texto y botón -->
+            <div class="chat-input">
+                <mat-form-field appearance="fill">
+                    <mat-label>Escribe tu mensaje...</mat-label>
+                    <input matInput [(ngModel)]="message">
+                </mat-form-field>
+                <button mat-raised-button color="primary" (click)="enviarMensaje()">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controles en la parte inferior -->
+    <div class="bottom-controls">
+        <div class="controls">
+            <button mat-icon-button (click)="toggleMicrophone()" [color]="microphoneEnabled ? 'primary' : 'warn'">
+                <mat-icon>{{ microphoneEnabled ? 'mic' : 'mic_off' }}</mat-icon>
+            </button>
+            <button mat-icon-button (click)="toggleCamera()" [color]="cameraEnabled ? 'primary' : 'warn'">
+                <mat-icon>{{ cameraEnabled ? 'videocam' : 'videocam_off' }}</mat-icon>
+            </button>
+            <button mat-icon-button (click)="shareScreen()" [color]="screenSharingEnabled ? 'primary' : 'accent'">
+                <mat-icon>{{ screenSharingEnabled ? 'screen_share' : 'stop_screen_share' }}</mat-icon>
+            </button>
+            <button mat-icon-button (click)="leaveCall()" color="warn">
+                <mat-icon>exit_to_app</mat-icon>
+            </button>
+        </div>
+
+        <!-- Enlace de la reunión -->
+        <div class="link-container">
+            <input id="meeting-link" matInput [value]="meetingLink" readonly>
+            <button mat-icon-button color="primary" (click)="copiarAlPortapapeles()">
+                <mat-icon>content_copy</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>
