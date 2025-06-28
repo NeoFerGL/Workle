@@ -45,7 +45,7 @@ export class VideollamadasScreenComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopLocalStream(); // Apagar la cámara y micrófono al salir del componente
-    if (this.socket) {
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       this.socket.close();
     }
   }
@@ -228,11 +228,14 @@ export class VideollamadasScreenComponent implements OnInit, OnDestroy {
   }
 
   private sendMediaStatus(type: string, enabled: boolean): void {
-    if (this.socket) {
+    if (this.socket && this.socket.readyState === WebSocket.OPEN) {
       const statusMessage = JSON.stringify({ type, enabled });
       this.socket.send(statusMessage);
+    } else {
+      console.warn('WebSocket no está abierto. No se envió:', { type, enabled });
     }
   }
+  
 
   private generateMeetingLink(): void {
     this.videollamadasService.generarEnlaceReunion()
